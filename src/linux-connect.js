@@ -8,7 +8,7 @@ var escapeShell = function(cmd) {
 
 function connectToWifi(config, ap, callback) {
   // Default to timeout of 10s; can be overriden by config.timeout
-  var timeoutStr "-w ";
+  var timeoutStr = "-w ";
   timeoutStr += (typeof(config.timeout) == "number") ? config.timeout : 10;
 
   var commandStr = "nmcli "+timeoutStr+" device wifi connect '" + ap.ssid + "'" +
