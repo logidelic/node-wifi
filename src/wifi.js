@@ -24,6 +24,10 @@ function init(options) {
         config.iface = options.iface;
     }
 
+    if (options && options.timeout) {
+        config.timeout = options.timeout;
+    }
+    
     var scan = function () {
         throw new Error("ERROR : not available for this OS");
     };
