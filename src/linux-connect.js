@@ -7,12 +7,18 @@ var escapeShell = function(cmd) {
 };
 
 function connectToWifi(config, ap, callback) {
-  var commandStr = "nmcli -w 10 device wifi connect '" + ap.ssid + "'" +
+  // Default to timeout of 10s; can be overriden by config.timeout
+  var timeoutStr "-w ";
+  timeoutStr += (typeof(config.timeout) == "number") ? config.timeout : 10;
+
+  var commandStr = "nmcli "+timeoutStr+" device wifi connect '" + ap.ssid + "'" +
       " password " + "'" + ap.password + "'" ;
 
   if (config.iface) {
       commandStr = commandStr + " ifname " + config.iface;
   }
+
+  console.log('connectToWifi - '+commandStr);
 
     // commandStr = escapeShell(commandStr);
 
